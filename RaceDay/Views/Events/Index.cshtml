@@ -1,0 +1,69 @@
+﻿@model List<RaceDay.Web.Services.EventDto>
+
+@{
+    ViewData["Title"] = "Events";
+}
+
+<div class="container mt-4">
+
+    <h2 class="mb-4">RaceDay Events</h2>
+
+    @if (ViewBag.Error != null)
+    {
+        <div class="alert alert-danger">
+            @ViewBag.Error
+        </div>
+    }
+
+    @if (Model == null || !Model.Any())
+    {
+        <div class="alert alert-info">
+            No events are currently available.
+        </div>
+    }
+    else
+    {
+        <div class="row">
+
+            @foreach (var raceEvent in Model)
+            {
+                <div class="col-md-4 mb-4">
+
+                    <div class="card h-100 shadow-sm">
+
+                        <div class="card-body">
+
+                            <h5 class="card-title">
+                                @raceEvent.EventName
+                            </h5>
+
+                            <p class="card-text">
+                                @raceEvent.Description
+                            </p>
+
+                            <p>
+                                <strong>Date:</strong>
+                                @raceEvent.EventDate.ToString("dd MMM yyyy")
+                            </p>
+
+                            <p>
+                                <strong>Location:</strong>
+                                @raceEvent.Location
+                            </p>
+
+                            <p>
+                                <strong>Status:</strong>
+                                @raceEvent.Status
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            }
+
+        </div>
+    }
+
+</div>

@@ -1,0 +1,60 @@
+﻿@model RaceDay.Web.Models.CreateEventViewModel
+
+@{
+    ViewData["Title"] = "Edit Event";
+}
+
+<h1>Edit Event</h1>
+
+<form asp-controller="Organiser"
+      asp-action="EditEvent"
+      method="post">
+
+    <div asp-validation-summary="All"
+         class="text-danger"></div>
+
+    <div class="mb-3">
+        <label asp-for="EventName" class="form-label"></label>
+        <input asp-for="EventName" class="form-control" />
+        <span asp-validation-for="EventName"
+              class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Description" class="form-label"></label>
+        <textarea asp-for="Description"
+                  class="form-control"></textarea>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="EventDate" class="form-label"></label>
+        <input asp-for="EventDate"
+               type="datetime-local"
+               class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Location" class="form-label"></label>
+        <input asp-for="Location" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Status" class="form-label"></label>
+        <select asp-for="Status" class="form-select">
+            <option value="Upcoming">Upcoming</option>
+            <option value="Ongoing">Ongoing</option>
+            <option value="Completed">Completed</option>
+            <option value="Cancelled">Cancelled</option>
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">
+        Save Changes
+    </button>
+
+    <a asp-controller="Organiser"
+       asp-action="ManageEvents"
+       class="btn btn-secondary">
+        Cancel
+    </a>
+</form>

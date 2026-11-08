@@ -1,0 +1,78 @@
+﻿@model RaceDay.Web.Models.CreateEventViewModel
+
+@{
+    ViewData["Title"] = "Create Event";
+}
+
+<div class="container mt-4">
+
+    <h2 class="mb-4">Create New Event</h2>
+
+    <form asp-controller="Organiser"
+          asp-action="CreateEvent"
+          method="post">
+
+        <div asp-validation-summary="All"
+             class="text-danger mb-3"></div>
+
+        <div class="mb-3">
+            <label asp-for="EventName" class="form-label">
+                Event Name
+            </label>
+            <input asp-for="EventName" class="form-control"
+                   placeholder="Enter event name" />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Description" class="form-label">
+                Description
+            </label>
+            <textarea asp-for="Description"
+                      class="form-control"
+                      rows="4"
+                      placeholder="Describe your event"></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="EventDate" class="form-label">
+                Event Date
+            </label>
+            <input asp-for="EventDate"
+                   type="datetime-local"
+                   class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Location" class="form-label">
+                Location
+            </label>
+            <input asp-for="Location"
+                   class="form-control"
+                   placeholder="Enter event location" />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Status" class="form-label">
+                Status
+            </label>
+            <select asp-for="Status" class="form-select">
+                <option value="Upcoming">Upcoming</option>
+                <option value="Active">Active</option>
+                <option value="Completed">Completed</option>
+                <option value="Cancelled">Cancelled</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+            Create Event
+        </button>
+
+        <a asp-controller="Organiser"
+           asp-action="Dashboard"
+           class="btn btn-secondary">
+            Cancel
+        </a>
+
+    </form>
+
+</div>

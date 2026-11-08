@@ -1,0 +1,121 @@
+﻿@model List<RaceDay.Web.Services.EventDto>
+@{
+    ViewData["Title"] = "Organiser Dashboard";
+}
+
+<div class="container mt-4">
+
+    <h2 class="mb-4">Organiser Dashboard</h2>
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["Success"]
+        </div>
+    }
+
+    <a asp-controller="Organiser"
+       asp-action="CreateEvent"
+       class="btn btn-primary mb-4">
+        + Create New Event
+    </a>
+
+    <p class="lead">
+        Welcome to your RaceDay organiser dashboard.
+    </p>
+
+    <div class="row">
+
+        <div class="col-md-4 mb-3">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <a asp-controller="Organiser"
+                       asp-action="ManageEvents"
+                       class="btn btn-primary">
+                        Manage Events
+                    </a>
+                    <h5 class="card-title">Manage Events</h5>
+                    <p class="card-text">
+                        Create, view and manage your events.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Manage Categories</h5>
+                    <p class="card-text">
+                        Organise events into categories.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Manage Results</h5>
+                    <p class="card-text">
+                        View and manage race results.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+</div>
+
+<h3 class="mt-4 mb-3">Available Events</h3>
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger">
+        @ViewBag.Error
+    </div>
+}
+
+@if (Model == null || !Model.Any())
+{
+    <div class="alert alert-info">
+        No events are currently available.
+    </div>
+}
+else
+{
+    <div class="row">
+        @foreach (var raceEvent in Model)
+        {
+            <div class="col-md-4 mb-3">
+                <div class="card shadow-sm h-100">
+                    <div class="card-body">
+
+                        <h5 class="card-title">
+                            @raceEvent.EventName
+                        </h5>
+
+                        <p>@raceEvent.Description</p>
+
+                        <p>
+                            <strong>Date:</strong>
+                            @raceEvent.EventDate.ToString("dd MMM yyyy")
+                        </p>
+
+                        <p>
+                            <strong>Location:</strong>
+                            @raceEvent.Location
+                        </p>
+
+                        <p>
+                            <strong>Status:</strong>
+                            @raceEvent.Status
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
